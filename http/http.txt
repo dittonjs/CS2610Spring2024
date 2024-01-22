@@ -1,0 +1,11 @@
+CLIENT
+<verb> <uri> <http version>
+Header-1: my value
+Header-2: 1,2,3,4
+Cookie: sessionId=asdflkasdf&name=Joseph
+Content-Type: application/json
+
+{
+  "name": "Joseph"
+}
+
