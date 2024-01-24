@@ -4,8 +4,10 @@ def decode_request(http_string):
     return Request(
         method="GET",
         version="HTTP/1.1",
-        uri="/hello_world.html",
-        headers={},
+        uri="/hello_world",
+        headers={
+            # "Session-Token": "asdf;lkajsdf;l.kjhasd"
+        },
         text=""
     )
 

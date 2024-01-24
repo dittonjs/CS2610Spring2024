@@ -1,10 +1,12 @@
-from endpoints import hello_world
+from endpoints import hello_world, goodbye_world
 from response import Response
 import datetime
 
 def router(req):
     if req.uri == "/hello_world":
         return hello_world(req)
+    if req.uri == "/goodbye_world":
+        return goodbye_world(req)
     else:
         return Response(
         version="HTTP/1.1",
