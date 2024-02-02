@@ -12,7 +12,7 @@
     <h1>Notes</h1>
   </header>
   <main>
-    <form action="/notes" method="post">
+    <form action="/notes/" method="post">
       <label>
         Title
         <input type="text" name="title">
@@ -23,6 +23,14 @@
       </label>
       <button>Save</button>
     </form>
+    <div>
+      {% for note in notes %}
+        <div class="note">
+          <h4>{{note.title}}</h4>
+          <p>{{note.content}}</p>
+        </div>
+      {% endfor %}
+    </div>
   </main>
 
 </body>
