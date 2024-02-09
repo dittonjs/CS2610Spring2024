@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Note
-
+from .models import Note, Task
+from django.http import HttpResponseNotFound
+import json
 # notes
 
 #index - everything /notes/ GET
@@ -29,3 +30,31 @@ def create_note(req):
     note.save()
     # create a note in the database
     return redirect("/")
+
+def create_task(req, id):
+    task = Task(
+        content=req.POST.get("content", ""),
+        is_completed=False,
+        note_id=id
+    )
+
+    task.save()
+    return redirect(f"/notes/{id}/")
+
+
+def delete_note(req, id):
+    try:
+        note = Note.objects.get(pk=id)
+        note.delete()
+        return redirect("/")
+    except Note.DoesNotExist as e:
+        return HttpResponseNotFound()
+
+
+def update_task(req, id):
+    body = json.loads(req.body)
+    task = Task.objects.get(pk=id)
+    task.is_completed = body.get("is_completed", False)
+    task.save()
+    return redirect("/")
+

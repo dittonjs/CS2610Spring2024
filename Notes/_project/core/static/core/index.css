@@ -4,7 +4,7 @@ h1 {
   padding: 8px;
 }
 
-form {
+.new-note-form {
   padding: 16px;
   border: 1px solid gray;
   border-radius: 4px;

@@ -12,7 +12,7 @@
     <h1>Notes</h1>
   </header>
   <main>
-    <form action="/notes/" method="post">
+    <form class="new-note-form" action="/notes/" method="post">
       <label>
         Title
         <input type="text" name="title">
@@ -28,6 +28,9 @@
         <div class="note">
           <h4><a href="/notes/{{note.id}}/">{{note.title}}</a></h4>
           <p>{{note.content}}</p>
+          <form action="/delete_note/{{note.id}}/">
+            <button>Delete</button>
+          </form>
         </div>
       {% endfor %}
     </div>

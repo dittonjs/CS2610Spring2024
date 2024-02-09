@@ -1,16 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="{% static 'core/index.js' %}"></script>
 </head>
 <body>
   <h1>{{note.title}}</h1>
   <p>{{note.content}}</p>
-  <form action="/" method="post">
-    <input type="text" name="task">
+  <form action="/notes/{{note.id}}/tasks/" method="post">
+    <input type="text" name="content">
     <button>Add Task</button>
   </form>
+  <div>
+    {%for task in note.tasks.all %}
+      <div>
+        <input
+          type="checkbox"
+          name="is_completed"
+          onChange="onCheckboxChange(event)"
+          data-task-id="{{task.id}}"
+          {% if task.is_completed %}
+            checked
+          {% endif %}
+        > {{task.content}}
+      </div>
+    {% endfor %}
+  </div>
 </body>
 </html>
