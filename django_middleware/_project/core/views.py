@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .middleware import num_visits_middleware
+from django.http import HttpResponse
 
 # Create your views here.
 @num_visits_middleware
@@ -14,3 +15,7 @@ def dashboard(req):
 
 def profile(req):
     return render(req, "core/profile.html")
+
+@num_visits_middleware
+def destination(req, id):
+    return HttpResponse(f"<h1>Destination {id}</h1>")
