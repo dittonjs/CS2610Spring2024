@@ -1,0 +1,13 @@
+.coloredBackground {
+  background-color: blue;
+}
+
+.block {
+  position: absolute;
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  transition: all .3s ease;
+  top: attr(y);
+  left: attr(x);
+}
