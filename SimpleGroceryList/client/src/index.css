@@ -1,0 +1,21 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+body {
+  margin: 0;
+}
+
+.nav {
+  padding: 8px 16px;
+  background-color: rebeccapurple;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-button {
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+}
