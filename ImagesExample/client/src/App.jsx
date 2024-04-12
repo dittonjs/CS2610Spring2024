@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import cookie from "cookie";
-import './App.css'
+
 
 function App() {
 
   const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [count, setCount] = useState(0);
 
   async function logout() {
     const res = await fetch("/registration/logout/", {
@@ -20,6 +20,18 @@ function App() {
       // handle logout failed!
     }
   }
+
+  async function loadFiles() {
+    const res = await fetch("/files/", {
+      credentials: "same-origin", // include cookies!
+    });
+    const {files} = await res.json();
+    setFiles(files);
+  }
+
+  useEffect(() => {
+    loadFiles();
+  }, []);
 
   function selectFile(e) {
     console.log(e.target.value);
@@ -42,10 +54,18 @@ function App() {
     <>
       <nav>
         <button onClick={logout}>Logout</button>
+        <button onClick={() => setCount(count+1)}>{count}</button>
       </nav>
       <div>
         <input type="file" onChange={selectFile}></input>
         <button onClick={uploadImage}>Upload File</button>
+      </div>
+      <div>
+        {files.map(f => (
+          <div key={f.id}>
+            <a href={`/files/${f.id}/`}>{f.name}</a>
+          </div>
+        ))}
       </div>
     </>
   )
